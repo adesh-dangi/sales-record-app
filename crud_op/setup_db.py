@@ -2,17 +2,18 @@ import os
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 from crud_op.data_schemas import Base, Buyers, Battery_Sales
+from logs import logger
 
-print("Starting to initialize database......")
+logger.info("Starting to initialize database......")
 
 DB_NAME = 'record_sales.db'
-
 
 
 class Start_DB:
     def __init__(self):
         self.session = None
         self.engine = None
+        self.session = None
 
     def init_db(self):
         if not os.path.exists('data'):
@@ -22,6 +23,8 @@ class Start_DB:
         Base.metadata.create_all(self.engine)
     
     def get_db_session(self):
+        if self.session is not None:
+            return self.session
         Session = sessionmaker(bind=self.engine)
         session = Session()
         return session
@@ -46,6 +49,6 @@ def load_mock_data():
     session = db_object.get_db_session()
     session.add_all(buyers + battery_sales)
     session.commit()
-    print("loaded mock data into database")
+    logger.info("loaded mock data into database")
     
 # load_mock_data()
