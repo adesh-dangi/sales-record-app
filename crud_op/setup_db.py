@@ -2,9 +2,10 @@ import os
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 from crud_op.data_schemas import Base, Buyers, Battery_Sales
-from logs import logger
+from logs import c_logger
+from datetime import datetime
 
-logger.info("Starting to initialize database......")
+c_logger.info("Starting to initialize database......")
 
 DB_NAME = 'record_sales.db'
 
@@ -14,10 +15,9 @@ class Start_DB:
         self.session = None
         self.engine = None
         self.session = None
-
-    def init_db(self):
-        if not os.path.exists('data'):
-            os.makedirs('data')
+        self.data_dir = os.path.join(os.getcwd(), "data")
+        if not os.path.exists(self.data_dir):
+            os.makedirs(self.data_dir)
         database = DB_NAME
         self.engine = create_engine(f'sqlite:///data/{database}')
         Base.metadata.create_all(self.engine)
@@ -26,29 +26,31 @@ class Start_DB:
         if self.session is not None:
             return self.session
         Session = sessionmaker(bind=self.engine)
-        session = Session()
-        return session
-        
+        self.session = Session()
+        return self.session
+
 db_object = Start_DB()
-db_object.init_db()
 
 def load_mock_data():
+    session = db_object.get_db_session()
     buyers = [
         Buyers(name="John Doe", mobile="1234567890"),
         Buyers(name="Jane Smith", mobile="0987654321"),
         Buyers(name="Alice Johnson", mobile="5551234567"),
     ]
+    session.add_all(buyers)
 
     battery_sales = [
-        Battery_Sales(name="John Doe", mobile="1234567890", order_id=1, price=100.0),
-        Battery_Sales(name="Jane Smith", mobile="0987654321", order_id=2, price=150.0),
-        Battery_Sales(name="Alice Johnson", mobile="5551234567", order_id=3, price=200.0),
-        Battery_Sales(name="Bob Brown", mobile="4445556666", order_id=4, price=250.0),
+        Battery_Sales(name="John Doe", mobile="1234567890", order_id=1, price=100.0, created_at=datetime.now(), updated_at=datetime.now()),
+        Battery_Sales(name="Jane Smith", mobile="0987654321", order_id=2, price=150.0, created_at=datetime.now(), updated_at=datetime.now()),
+        Battery_Sales(name="Alice Johnson", mobile="5551234567", order_id=3, price=200.0, created_at=datetime.now(), updated_at=datetime.now()),
+        Battery_Sales(name="John Doe", mobile="1234567890", order_id=4, price=120.0, created_at=datetime.now(), updated_at=datetime.now()),
     ]
+    session.add_all(battery_sales)
 
-    session = db_object.get_db_session()
-    session.add_all(buyers + battery_sales)
+    # session.add_all(buyers + battery_sales) can be done in one short
+
     session.commit()
-    logger.info("loaded mock data into database")
+    c_logger.info("loaded mock data into database")
     
 # load_mock_data()

@@ -24,7 +24,7 @@ class Battery_Sales(Base):
     name = Column(String)
     mobile = Column(String)
     created_at = Column(DateTime, default=func.now)
-    updated_at = Column(DateTime, default=func.now)
+    updated_at = Column(DateTime, default=func.now, onupdate=func.now)
     order_id = Column(Float)  # double precision in SQLite
     price = Column(Float)
     active_sale = Column(Boolean, default=True)

@@ -1,7 +1,9 @@
 from crud_op.setup_db import Start_DB
 session = Start_DB().get_db_session()
 
-from crud_op.data_schemas import Buyers, Battery_Sales, func
+from datetime import datetime
+from crud_op.data_schemas import Buyers, Battery_Sales
+from logs import c_logger as logger
 
 def add_buyer(name, mobile):
     new_buyer = Buyers(name=name, mobile=mobile)
@@ -51,8 +53,8 @@ def get_battery_sales_by_created_date_range(start_date, end_date):
 def soft_delete_sales_record(record_id):
     sale = session.query(Battery_Sales).filter(Battery_Sales.id == record_id, Battery_Sales.active_sale == True).first()
     if sale:
-        session.query(Battery_Sales).filter(Battery_Sales.id == record_id).update({"active_sale": False, "updated_at": func.now})
+        session.query(Battery_Sales).filter(Battery_Sales.id == record_id).update({"active_sale": False, "updated_at": datetime.now()})
         session.commit()
-        print(f"Deleted sale record with ID: {record_id}")
+        logger.info(f"Deleted sale record with ID: {record_id}")
     else:
-        print(f"No sale record found with ID: {record_id}")
+        logger.info(f"No sale record found with ID: {record_id}")
