@@ -1,238 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>1318</width>
-    <height>812</height>
-   </rect>
-  </property>
+ <widget class="QWidget" name="MainWindow">
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Company App with Pages</string>
   </property>
-  <widget class="QWidget" name="centralwidget">
-   <widget class="QFrame" name="frame">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>2000</width>
-      <height>5000</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="minimumSize">
-     <size>
-      <width>2000</width>
-      <height>5000</height>
-     </size>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="layoutDirection">
-     <enum>Qt::LeftToRight</enum>
-    </property>
-    <property name="autoFillBackground">
-     <bool>true</bool>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color:#fff9db;</string>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::Box</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Sunken</enum>
-    </property>
-    <widget class="QWidget" name="verticalLayoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>330</x>
-       <y>90</y>
-       <width>501</width>
-       <height>471</height>
-      </rect>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="companyLabel">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>50</height>
+      </size>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <property name="sizeConstraint">
-       <enum>QLayout::SetFixedSize</enum>
-      </property>
-      <item>
-       <widget class="QLabel" name="main_window_company_name">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
-          <horstretch>100</horstretch>
-          <verstretch>200</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="baseSize">
-         <size>
-          <width>0</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="cursor">
-         <cursorShape>ForbiddenCursor</cursorShape>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">    background-color: #b2f2bb;
-    font-weight: bold;
-    font-size: 26px;</string>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::Box</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Raised</enum>
-        </property>
-        <property name="text">
-         <string>Om Sai Electronics</string>
-        </property>
-        <property name="scaledContents">
-         <bool>true</bool>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-        <property name="wordWrap">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton">
-        <property name="styleSheet">
-         <string notr="true"> background-color: #a5d8ff;
-    border: 2px solid #69c0ff;
-    color: #2c3e50;
-    font-weight: bold;
-    font-size: 18px;
-    padding: 15px 30px;
-    border-radius: 20px;
-    cursor: pointer;
-    width: 250px;
-    box-shadow: 2px 4px 5px rgba(0,0,0,0.1);</string>
-        </property>
-        <property name="text">
-         <string>PushButton</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton_3">
-        <property name="styleSheet">
-         <string notr="true"> background-color: #a5d8ff;
-    border: 2px solid #69c0ff;
-    color: #2c3e50;
-    font-weight: bold;
-    font-size: 18px;
-    padding: 15px 30px;
-    border-radius: 20px;
-    cursor: pointer;
-    width: 250px;
-    box-shadow: 2px 4px 5px rgba(0,0,0,0.1);</string>
-        </property>
-        <property name="text">
-         <string>PushButton</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton_4">
-        <property name="styleSheet">
-         <string notr="true"> background-color: #a5d8ff;
-    border: 2px solid #69c0ff;
-    color: #2c3e50;
-    font-weight: bold;
-    font-size: 18px;
-    padding: 15px 30px;
-    border-radius: 20px;
-    cursor: pointer;
-    width: 250px;
-    box-shadow: 2px 4px 5px rgba(0,0,0,0.1);</string>
-        </property>
-        <property name="text">
-         <string>PushButton</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton_2">
-        <property name="styleSheet">
-         <string notr="true"> background-color: #a5d8ff;
-    border: 2px solid #69c0ff;
-    color: #2c3e50;
-    font-weight: bold;
-    font-size: 18px;
-    padding: 15px 30px;
-    border-radius: 20px;
-    cursor: pointer;
-    width: 250px;
-    box-shadow: 2px 4px 5px rgba(0,0,0,0.1);</string>
-        </property>
-        <property name="text">
-         <string>PushButton</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
+     <property name="text">
+      <string>My Company Pvt Ltd</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: green; color: white; font-size: 24px; font-weight: bold;</string>
+     </property>
     </widget>
-   </widget>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1318</width>
-     <height>26</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menuNavigation">
-    <property name="title">
-     <string>Navigation</string>
-    </property>
-    <addaction name="actionMain_Page"/>
-    <addaction name="actionAdd_Sales_Record"/>
-    <addaction name="actionSearch_Sales_Record"/>
-    <addaction name="separator"/>
-    <addaction name="actionClose_Application"/>
-   </widget>
-   <addaction name="menuNavigation"/>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionMain_Page">
-   <property name="text">
-    <string>Main Page</string>
-   </property>
-  </action>
-  <action name="actionAdd_Sales_Record">
-   <property name="text">
-    <string>Add Sales Record</string>
-   </property>
-  </action>
-  <action name="actionSearch_Sales_Record">
-   <property name="text">
-    <string>Search Sales Record</string>
-   </property>
-  </action>
-  <action name="actionClose_Application">
-   <property name="text">
-    <string>Close Application</string>
-   </property>
-  </action>
+   </item>
+   <item>
+    <spacer name="verticalSpacerTop">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button1">
+     <property name="text">
+      <string>Button 1</string>
+     </property>
+     <property name="minimumHeight">
+      <number>70</number>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>26</pointsize>
+      </font>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button2">
+     <property name="text">
+      <string>Button 2</string>
+     </property>
+     <property name="minimumHeight">
+      <number>70</number>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>26</pointsize>
+      </font>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button3">
+     <property name="text">
+      <string>Button 3</string>
+     </property>
+     <property name="minimumHeight">
+      <number>70</number>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>26</pointsize>
+      </font>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <spacer name="verticalSpacerBottom">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>

@@ -1,0 +1,12 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>images/icons/add/icons8-writer-male-50.png</file>
+    <file>images/icons/search/icons8-search-property-100.png</file>
+    <file>images/icons/add/icons8-writer-male-100.png</file>
+  </qresource>
+  <qresource prefix="images"/>
+  <qresource prefix="list_icon">
+    <file>images/icons/list/icons8-list-50.png</file>
+    <file>images/icons/list/icons8-list-100.png</file>
+  </qresource>
+</RCC>
