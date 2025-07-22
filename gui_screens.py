@@ -11,9 +11,23 @@ from PyQt6.QtWidgets import (QAbstractSpinBox, QApplication, QComboBox, QDateEdi
     QFrame, QGridLayout, QHBoxLayout, QHeaderView,
     QLabel, QLineEdit, QPushButton, QSizePolicy,
     QSpacerItem, QSpinBox, QStackedWidget, QTableWidget,
-    QTableWidgetItem, QVBoxLayout, QWidget, QMainWindow)
+    QTableWidgetItem, QVBoxLayout, QWidget, QMainWindow, QMessageBox)
 
 class Ui_MainWindow(object):
+    def copy_cell_content(self, row, column):
+        print("cell double-clicked to copy", row, column)
+        item = self.search_result_table.item(row, column)
+        if item:
+            clipboard = QApplication.clipboard()
+            clipboard.setText(item.text())
+            # Show alert
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Icon.Information)
+            msg.setText(f"Copied: {item.text()}")
+            msg.setWindowTitle("Cell Copied")
+            msg.setStandardButtons(QMessageBox.StandardButton.Ok)
+            msg.exec()
+
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
@@ -40,7 +54,7 @@ class Ui_MainWindow(object):
 "border-radius: 15px;\n"
 "   padding: 10% 0 10% 0;")
         icon = QIcon()
-        icon.addFile(u":/search/images/icons/search/icons8-search-property-50.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon.addFile(u"gui/images/icons/search/icons8-search-property-50.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.Search_sale_btn.setIcon(icon)
         self.Search_sale_btn.setIconSize(QSize(45, 39))
 
@@ -57,7 +71,7 @@ class Ui_MainWindow(object):
 "border-radius: 15px;\n"
 "   padding: 10% 0 10% 0;")
         icon1 = QIcon()
-        icon1.addFile(u":/icons/images/icons/add/icons8-writer-male-50.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon1.addFile(u"gui/images/icons/add/icons8-writer-male-50.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.New_Sales_btn.setIcon(icon1)
         self.New_Sales_btn.setIconSize(QSize(45, 45))
 
@@ -75,7 +89,7 @@ class Ui_MainWindow(object):
 "border-radius: 15px;\n"
 "   padding: 10% 0 10% 0;")
         icon2 = QIcon()
-        icon2.addFile(u":/images/images/pdf_logo.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon2.addFile(u"gui\images\pdf_logo.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.Report_btn.setIcon(icon2)
         self.Report_btn.setIconSize(QSize(45, 50))
 
@@ -179,7 +193,7 @@ class Ui_MainWindow(object):
 "  margin-left: 50%;\n"
 "")
         icon3 = QIcon()
-        icon3.addFile(u":/search/images/icons/search/icons8-search-50.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon3.addFile(u"gui/images/icons/search/icons8-search-50.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.search_btn_action.setIcon(icon3)
         self.search_btn_action.setIconSize(QSize(54, 35))
 
@@ -296,22 +310,34 @@ class Ui_MainWindow(object):
         self.verticalLayout.addLayout(self.horizontalLayout_4)
 
         self.search_result_table = QTableWidget(self.page1)
-        if (self.search_result_table.columnCount() < 5):
-            self.search_result_table.setColumnCount(5)
-        __qtablewidgetitem = QTableWidgetItem()
-        self.search_result_table.setHorizontalHeaderItem(0, __qtablewidgetitem)
+        if (self.search_result_table.columnCount() < 6):
+            self.search_result_table.setColumnCount(6)
+        # __qtablewidgetitem = QTableWidgetItem()
+        # self.search_result_table.setHorizontalHeaderItem(0, __qtablewidgetitem)
         __qtablewidgetitem1 = QTableWidgetItem()
-        self.search_result_table.setHorizontalHeaderItem(1, __qtablewidgetitem1)
+        self.search_result_table.setHorizontalHeaderItem(0, __qtablewidgetitem1)
         __qtablewidgetitem2 = QTableWidgetItem()
-        self.search_result_table.setHorizontalHeaderItem(2, __qtablewidgetitem2)
+        self.search_result_table.setHorizontalHeaderItem(1, __qtablewidgetitem2)
         __qtablewidgetitem3 = QTableWidgetItem()
-        self.search_result_table.setHorizontalHeaderItem(3, __qtablewidgetitem3)
+        self.search_result_table.setHorizontalHeaderItem(2, __qtablewidgetitem3)
         __qtablewidgetitem4 = QTableWidgetItem()
-        self.search_result_table.setHorizontalHeaderItem(4, __qtablewidgetitem4)
+        self.search_result_table.setHorizontalHeaderItem(3, __qtablewidgetitem4)
+        __qtablewidgetitem5 = QTableWidgetItem()
+        self.search_result_table.setHorizontalHeaderItem(4, __qtablewidgetitem5)
+        __qtablewidgetitem6 = QTableWidgetItem()
+        self.search_result_table.setHorizontalHeaderItem(5, __qtablewidgetitem6)
+
+        self.search_result_table.horizontalHeader().setSectionResizeMode(5, QHeaderView.ResizeMode.ResizeToContents) 
+        self.search_result_table.horizontalHeader().setSectionResizeMode(2, QHeaderView.ResizeMode.ResizeToContents) 
+        self.search_result_table.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.ResizeToContents) 
+
         self.search_result_table.setObjectName(u"search_result_table")
         self.search_result_table.viewport().setProperty("cursor", QCursor(Qt.CursorShape.PointingHandCursor))
         self.search_result_table.setStyleSheet(u"")
         self.search_result_table.setAutoScrollMargin(16)
+
+        self.search_result_table.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
+        self.search_result_table.cellDoubleClicked.connect(self.copy_cell_content)
 
         self.verticalLayout.addWidget(self.search_result_table)
 
@@ -526,20 +552,30 @@ class Ui_MainWindow(object):
         self.serial_no_search.setPlaceholderText(QCoreApplication.translate("Form", u"Search by Serial Number....", None))
         self.mobile_search.setText("")
         self.mobile_search.setPlaceholderText(QCoreApplication.translate("Form", u"Search by Mobile no...", None))
-        self.total_search_label.setText(QCoreApplication.translate("Form", u"Total:1000", None))
+        self.total_search_label.setText(QCoreApplication.translate("Form", u"Total:----", None))
         self.pag_back_search_btn.setText(QCoreApplication.translate("Form", u"<", None))
-        self.pag_count_label.setText(QCoreApplication.translate("Form", u"1-100", None))
+        self.pag_count_label.setText(QCoreApplication.translate("Form", u"X-Y", None))
         self.pag_forward_search_btn.setText(QCoreApplication.translate("Form", u">", None))
-        ___qtablewidgetitem = self.search_result_table.horizontalHeaderItem(0)
-        ___qtablewidgetitem.setText(QCoreApplication.translate("Form", u"Sr No.", None));
-        ___qtablewidgetitem1 = self.search_result_table.horizontalHeaderItem(1)
+        # ___qtablewidgetitem = self.search_result_table.horizontalHeaderItem(0)
+        # ___qtablewidgetitem.setText(QCoreApplication.translate("Form", u"Sr No.", None));
+
+        ___qtablewidgetitem1 = self.search_result_table.horizontalHeaderItem(0)
         ___qtablewidgetitem1.setText(QCoreApplication.translate("Form", u"Name", None));
-        ___qtablewidgetitem2 = self.search_result_table.horizontalHeaderItem(2)
-        ___qtablewidgetitem2.setText(QCoreApplication.translate("Form", u"Serial Number", None));
-        ___qtablewidgetitem3 = self.search_result_table.horizontalHeaderItem(3)
-        ___qtablewidgetitem3.setText(QCoreApplication.translate("Form", u"Date", None));
-        ___qtablewidgetitem4 = self.search_result_table.horizontalHeaderItem(4)
-        ___qtablewidgetitem4.setText(QCoreApplication.translate("Form", u"View Details", None));
+
+        ___qtablewidgetitem2 = self.search_result_table.horizontalHeaderItem(1)
+        ___qtablewidgetitem2.setText(QCoreApplication.translate("Form", u"Mobile", None));
+
+        ___qtablewidgetitem3 = self.search_result_table.horizontalHeaderItem(2)
+        ___qtablewidgetitem3.setText(QCoreApplication.translate("Form", u"Serial Number", None));
+
+        ___qtablewidgetitem4 = self.search_result_table.horizontalHeaderItem(3)
+        ___qtablewidgetitem4.setText(QCoreApplication.translate("Form", u"Date", None));
+
+        ___qtablewidgetitem5 = self.search_result_table.horizontalHeaderItem(4)
+        ___qtablewidgetitem5.setText(QCoreApplication.translate("Form", u"Price", None));
+
+        ___qtablewidgetitem6 = self.search_result_table.horizontalHeaderItem(5)
+        ___qtablewidgetitem6.setText(QCoreApplication.translate("Form", u"Actions", None));
 
         self.comboBox.setPlaceholderText(QCoreApplication.translate("Form", u"Choose Product", None))
         self.label_9.setText(QCoreApplication.translate("Form", u"Price", None))
