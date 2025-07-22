@@ -2,6 +2,7 @@ import sys
 from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QPushButton, QLabel, QStackedWidget
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QFont
+from gui_screens import Ui_MainWindow
 
 class MainPage(QWidget):
     def __init__(self, stacked_widget):

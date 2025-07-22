@@ -3,7 +3,7 @@ from logging.handlers import TimedRotatingFileHandler
 import os
 from datetime import datetime
 
-path_dir_log = "logs"
+path_dir_log = "logs_files"
 
 def setup_logger(log_name=None):
     if log_name is None:

@@ -4,7 +4,18 @@
     <file>images/icons/search/icons8-search-property-100.png</file>
     <file>images/icons/add/icons8-writer-male-100.png</file>
   </qresource>
-  <qresource prefix="images"/>
+  <qresource prefix="search">
+    <file>images/icons/search/icons8-package-search-50.png</file>
+    <file>images/icons/search/icons8-package-search-100.png</file>
+    <file>images/icons/search/icons8-search.gif</file>
+    <file>images/icons/search/icons8-search-50.png</file>
+    <file>images/icons/search/icons8-search-100.png</file>
+    <file>images/icons/search/icons8-search-property-50.png</file>
+    <file>images/icons/search/icons8-search-property-100.png</file>
+  </qresource>
+  <qresource prefix="images">
+    <file>images/pdf_logo.png</file>
+  </qresource>
   <qresource prefix="list_icon">
     <file>images/icons/list/icons8-list-50.png</file>
     <file>images/icons/list/icons8-list-100.png</file>

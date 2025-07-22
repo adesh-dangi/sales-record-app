@@ -2,10 +2,10 @@ import os
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 from crud_op.data_schemas import Base, Buyers, Battery_Sales
-from logs import c_logger
+from logs import c_logger as logger
 from datetime import datetime
 
-c_logger.info("Starting to initialize database......")
+logger.info("Starting to initialize database......")
 
 DB_NAME = 'record_sales.db'
 
@@ -51,6 +51,6 @@ def load_mock_data():
     # session.add_all(buyers + battery_sales) can be done in one short
 
     session.commit()
-    c_logger.info("loaded mock data into database")
+    logger.info("loaded mock data into database")
     
 # load_mock_data()
