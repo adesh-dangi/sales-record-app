@@ -230,9 +230,28 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addWidget(self.mobile_search, 1, 0, 1, 1)
 
-        self.date_search = QDateEdit(self.frame)
-        self.date_search.setObjectName(u"date_search")
-        self.date_search.setStyleSheet(u" background-color:rgb(234, 234, 234);\n"
+        self.horizontalLayout = QHBoxLayout()
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.month_search_inp = QComboBox(self.frame)
+        months = [
+            "Select-Month",
+            "JANUARY",
+            "FEBRUARY",
+            "MARCH",
+            "APRIL",
+            "JUNE",
+            "JULY",
+            "AUGUST",
+            "SEPTEMBER",
+            "OCTOBER",
+            "NOVEMBER",
+            "DECEMBER",
+        ]
+        self.month_search_inp.addItems(months)
+        self.month_search_inp.setObjectName(u"month_search_inp")
+        self.month_search_inp.setMinimumSize(QSize(190, 0))
+        self.month_search_inp.setMaximumSize(QSize(1000, 16777215))
+        self.month_search_inp.setStyleSheet(u" background-color:rgb(234, 234, 234);\n"
 "color: rgb(0, 0, 0);\n"
 "    text-align: center;\n"
 "    font-weight: bold;\n"
@@ -240,14 +259,30 @@ class Ui_MainWindow(object):
 "border-radius: 15px;\n"
 "   padding: 10% 50% 10% 50%;\n"
 "border:2px solid black;")
-        self.date_search.setInputMethodHints(Qt.InputMethodHint.ImhDate|Qt.InputMethodHint.ImhPreferNumbers)
-        self.date_search.setWrapping(True)
-        self.date_search.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
-        self.date_search.setAccelerated(True)
-        self.date_search.setProperty("showGroupSeparator", True)
-        self.date_search.setCalendarPopup(True)
 
-        self.gridLayout_2.addWidget(self.date_search, 1, 1, 1, 1)
+        self.horizontalLayout.addWidget(self.month_search_inp)
+
+        self.year_search_inp = QLineEdit(self.frame)
+        self.year_search_inp.setObjectName(u"year_search_inp")
+        self.year_search_inp.setMaximumSize(QSize(250, 16777215))
+        self.year_search_inp.setStyleSheet(u" background-color:rgb(234, 234, 234);\n"
+"color: rgb(0, 0, 0);\n"
+"    text-align: center;\n"
+"    font-weight: bold;\n"
+"    font-size: 20px;\n"
+"border-radius: 15px;\n"
+"   padding: 10% 50% 10% 50%;\n"
+"border:2px solid black;")
+        self.year_search_inp.setInputMethodHints(Qt.InputMethodHint.ImhDigitsOnly|Qt.InputMethodHint.ImhPreferNumbers)
+        self.year_search_inp.setMaxLength(4)
+        self.year_search_inp.setPlaceholderText("YYYY")
+        self.year_search_inp.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.year_search_inp.setClearButtonEnabled(True)
+
+        self.horizontalLayout.addWidget(self.year_search_inp)
+
+
+        self.gridLayout_2.addLayout(self.horizontalLayout, 1, 1, 1, 1)
 
 
         self.verticalLayout.addWidget(self.frame)

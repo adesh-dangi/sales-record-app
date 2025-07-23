@@ -34,10 +34,11 @@ def test_init_db_creates_data_dir(tmp_path, monkeypatch):
             return False
         return real_exists(path)
 
-    def fake_join(a, b):
-        if b == "data":
-            return str(data_dir)
-        return real_join(a, b)
+    def fake_join(*args):
+        if "data" in args:
+            # Replace the last "data" with the test data_dir
+            args = tuple(str(data_dir) if arg == "data" else arg for arg in args)
+        return real_join(*args)
 
     def fake_makedirs(path):
         called['made'] = path

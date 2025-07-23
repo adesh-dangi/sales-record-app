@@ -206,7 +206,7 @@ border-radius: 15px;
      <item row="1" column="1">
       <widget class="QStackedWidget" name="stackedWidget">
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="page1">
         <layout class="QVBoxLayout" name="verticalLayout">
@@ -236,6 +236,32 @@ margin-right:750%</string>
             <enum>QFrame::Raised</enum>
            </property>
            <layout class="QGridLayout" name="gridLayout_2">
+            <item row="0" column="1">
+             <widget class="QLineEdit" name="serial_no_search">
+              <property name="styleSheet">
+               <string notr="true"> background-color:rgb(234, 234, 234);
+color: rgb(0, 0, 0);
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+border-radius: 15px;
+   padding: 10% 50% 10% 50%;
+border:2px solid black;</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="maxLength">
+               <number>300</number>
+              </property>
+              <property name="placeholderText">
+               <string>Search by Serial Number....</string>
+              </property>
+              <property name="clearButtonEnabled">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
             <item row="0" column="0">
              <widget class="QLineEdit" name="name_search">
               <property name="styleSheet">
@@ -256,6 +282,35 @@ border:2px solid black;</string>
               </property>
               <property name="placeholderText">
                <string>Search By Name....</string>
+              </property>
+              <property name="clearButtonEnabled">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLineEdit" name="mobile_search">
+              <property name="styleSheet">
+               <string notr="true"> background-color:rgb(234, 234, 234);
+color: rgb(0, 0, 0);
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+border-radius: 15px;
+   padding: 10% 50% 10% 50%;
+border:2px solid black;</string>
+              </property>
+              <property name="inputMethodHints">
+               <set>Qt::ImhDialableCharactersOnly|Qt::ImhDigitsOnly|Qt::ImhPreferNumbers</set>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="maxLength">
+               <number>11</number>
+              </property>
+              <property name="placeholderText">
+               <string>Search by Mobile no...</string>
               </property>
               <property name="clearButtonEnabled">
                <bool>true</bool>
@@ -311,65 +366,24 @@ border-radius: 15px;
               </property>
              </widget>
             </item>
-            <item row="0" column="1">
-             <widget class="QLineEdit" name="serial_no_search">
-              <property name="styleSheet">
-               <string notr="true"> background-color:rgb(234, 234, 234);
-color: rgb(0, 0, 0);
-    text-align: center;
-    font-weight: bold;
-    font-size: 20px;
-border-radius: 15px;
-   padding: 10% 50% 10% 50%;
-border:2px solid black;</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="maxLength">
-               <number>300</number>
-              </property>
-              <property name="placeholderText">
-               <string>Search by Serial Number....</string>
-              </property>
-              <property name="clearButtonEnabled">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLineEdit" name="mobile_search">
-              <property name="styleSheet">
-               <string notr="true"> background-color:rgb(234, 234, 234);
-color: rgb(0, 0, 0);
-    text-align: center;
-    font-weight: bold;
-    font-size: 20px;
-border-radius: 15px;
-   padding: 10% 50% 10% 50%;
-border:2px solid black;</string>
-              </property>
-              <property name="inputMethodHints">
-               <set>Qt::ImhDialableCharactersOnly|Qt::ImhDigitsOnly|Qt::ImhPreferNumbers</set>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="maxLength">
-               <number>11</number>
-              </property>
-              <property name="placeholderText">
-               <string>Search by Mobile no...</string>
-              </property>
-              <property name="clearButtonEnabled">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
             <item row="1" column="1">
-             <widget class="QDateEdit" name="date_search">
-              <property name="styleSheet">
-               <string notr="true"> background-color:rgb(234, 234, 234);
+             <layout class="QHBoxLayout" name="horizontalLayout">
+              <item>
+               <widget class="QComboBox" name="month_search_inp">
+                <property name="minimumSize">
+                 <size>
+                  <width>190</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>1000</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true"> background-color:rgb(234, 234, 234);
 color: rgb(0, 0, 0);
     text-align: center;
     font-weight: bold;
@@ -377,26 +391,108 @@ color: rgb(0, 0, 0);
 border-radius: 15px;
    padding: 10% 50% 10% 50%;
 border:2px solid black;</string>
-              </property>
-              <property name="inputMethodHints">
-               <set>Qt::ImhDate|Qt::ImhPreferNumbers</set>
-              </property>
-              <property name="wrapping">
-               <bool>true</bool>
-              </property>
-              <property name="buttonSymbols">
-               <enum>QAbstractSpinBox::NoButtons</enum>
-              </property>
-              <property name="accelerated">
-               <bool>true</bool>
-              </property>
-              <property name="showGroupSeparator" stdset="0">
-               <bool>true</bool>
-              </property>
-              <property name="calendarPopup">
-               <bool>true</bool>
-              </property>
-             </widget>
+                </property>
+                <property name="placeholderText">
+                 <string>Month</string>
+                </property>
+                <item>
+                 <property name="text">
+                  <string>January</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>February</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>March</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>April</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>May</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>June</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>July</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>August</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>September</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>October</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>November</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>December</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="year_search_inp">
+                <property name="maximumSize">
+                 <size>
+                  <width>157</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true"> background-color:rgb(234, 234, 234);
+color: rgb(0, 0, 0);
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+border-radius: 15px;
+   padding: 10% 50% 10% 50%;
+border:2px solid black;</string>
+                </property>
+                <property name="inputMethodHints">
+                 <set>Qt::ImhDigitsOnly|Qt::ImhPreferNumbers</set>
+                </property>
+                <property name="maxLength">
+                 <number>4</number>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+                <property name="placeholderText">
+                 <string>2025</string>
+                </property>
+                <property name="clearButtonEnabled">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </item>
            </layout>
           </widget>
@@ -489,6 +585,9 @@ border-radius: 10px;
            </property>
            <property name="styleSheet">
             <string notr="true"/>
+           </property>
+           <property name="autoScroll">
+            <bool>false</bool>
            </property>
            <property name="autoScrollMargin">
             <number>16</number>

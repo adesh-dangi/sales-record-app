@@ -40,9 +40,9 @@ def test_get_battery_sales_by_name_not_found():
     assert sales == []
 
 def test_get_battery_sales_by_order_id_found():
-    sales = crud_operation.get_battery_sales_by_order_id(1)
+    sales = crud_operation.get_battery_sales_by_order_id("T1jygkyjghjku12321")
     assert sales
-    assert all(s.order_id == 1 for s in sales)
+    assert all(s.order_id == "T1jygkyjghjku12321" for s in sales)
 
 def test_get_battery_sales_by_order_id_not_found():
     sales = crud_operation.get_battery_sales_by_order_id(999)
