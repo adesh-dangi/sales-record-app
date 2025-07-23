@@ -6,6 +6,16 @@ from datetime import datetime
 class Base(DeclarativeBase):
     pass
 
+class Product(Base):
+    __tablename__ = "products"
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String)
+    created_at = Column(DateTime, default=datetime.now())
+    active = Column(Boolean, default=True)
+
+    def __repr__(self) -> str:
+        return f"Buyers(id={self.id!r}, name={self.name!r}, created_at={self.created_at!r})"
+
 class Buyers(Base):
     __tablename__ = "buyers"
     # columns for buyers table
@@ -27,6 +37,7 @@ class Battery_Sales(Base):
     updated_at = Column(DateTime, default=func.now, onupdate=func.now)
     order_id = Column(String)  # double precision in SQLite
     price = Column(Float)
+    product = Column(String)
     active_sale = Column(Boolean, default=True)
 
     def __repr__(self) -> str:

@@ -3,20 +3,30 @@ session = Start_DB().get_db_session()
 
 from datetime import datetime, timedelta
 import calendar
-from crud_op.data_schemas import Buyers, Battery_Sales
+from crud_op.data_schemas import Buyers, Battery_Sales, Product
 from logs import c_logger as logger
+
+def save_new_product_item(product_name):
+    new_product= Product(name=product_name)
+    session.add(new_product)
+    session.commit()
+    # logger.info(f"Added product: {new_product}")
+
+def get_products_list():
+    buyers = session.query(Product).filter(Product.active==True).all()
+    return buyers
 
 def add_buyer(name, mobile):
     new_buyer = Buyers(name=name, mobile=mobile)
     session.add(new_buyer)
     session.commit()
-    print(f"Added buyer: {name}")
+    # logger.info(f"Added buyer: {name}")
 
-def add_battery_sale(name, mobile, order_id, price):
-    new_sale = Battery_Sales(name=name, mobile=mobile, order_id=order_id, price=price)
+def add_battery_sale(name, mobile, order_id, price, product):
+    new_sale = Battery_Sales(name=name, mobile=mobile, order_id=order_id, price=price, product=product,created_at=datetime.now(), updated_at=datetime.now())
     session.add(new_sale)
     session.commit()
-    print(f"Added battery sale: {name}, Order ID: {order_id}, Price: {price}")
+    # logger.info(f"Added battery sale: {name}, Order ID: {order_id}, Price: {price}")
 
 def get_all_buyers():
     buyers = session.query(Buyers).all()

@@ -345,8 +345,8 @@ class Ui_MainWindow(object):
         self.verticalLayout.addLayout(self.horizontalLayout_4)
 
         self.search_result_table = QTableWidget(self.page1)
-        if (self.search_result_table.columnCount() < 6):
-            self.search_result_table.setColumnCount(6)
+        if (self.search_result_table.columnCount() < 7):
+            self.search_result_table.setColumnCount(7)
         # __qtablewidgetitem = QTableWidgetItem()
         # self.search_result_table.setHorizontalHeaderItem(0, __qtablewidgetitem)
         __qtablewidgetitem1 = QTableWidgetItem()
@@ -361,6 +361,8 @@ class Ui_MainWindow(object):
         self.search_result_table.setHorizontalHeaderItem(4, __qtablewidgetitem5)
         __qtablewidgetitem6 = QTableWidgetItem()
         self.search_result_table.setHorizontalHeaderItem(5, __qtablewidgetitem6)
+        __qtablewidgetitem7 = QTableWidgetItem()
+        self.search_result_table.setHorizontalHeaderItem(6, __qtablewidgetitem7)
 
         self.search_result_table.horizontalHeader().setSectionResizeMode(5, QHeaderView.ResizeMode.ResizeToContents) 
         self.search_result_table.horizontalHeader().setSectionResizeMode(2, QHeaderView.ResizeMode.ResizeToContents) 
@@ -381,11 +383,12 @@ class Ui_MainWindow(object):
         self.page2.setObjectName(u"page2")
         self.gridLayout_3 = QGridLayout(self.page2)
         self.gridLayout_3.setObjectName(u"gridLayout_3")
-        self.comboBox = QComboBox(self.page2)
-        self.comboBox.addItem(u"test1")
-        self.comboBox.addItem(u"test2")
-        self.comboBox.setObjectName(u"comboBox")
-        self.comboBox.setStyleSheet(u" background-color:rgb(234, 234, 234);\n"
+        self.product_combo_list = QComboBox(self.page2)
+        self.product_combo_list.addItem(u"select product")
+        self.product_combo_list.addItem(u"Battery")
+        self.product_combo_list.addItem(u"Others")
+        self.product_combo_list.setObjectName(u"comboBox")
+        self.product_combo_list.setStyleSheet(u" background-color:rgb(234, 234, 234);\n"
 "color: rgb(0, 0, 0);\n"
 "    text-align: center;\n"
 "    font-weight: bold;\n"
@@ -393,9 +396,9 @@ class Ui_MainWindow(object):
 "border-radius: 15px;\n"
 "   padding: 10% 50% 10% 50%;\n"
 "border:2px solid black;")
-        self.comboBox.setCurrentText(u"")
-
-        self.gridLayout_3.addWidget(self.comboBox, 5, 1, 1, 1)
+        self.product_combo_list.setCurrentText(u"Select a Product")
+        self.product_combo_list.setEditable(True)  # Enable text editing
+        self.gridLayout_3.addWidget(self.product_combo_list, 5, 1, 1, 1)
 
         self.label_9 = QLabel(self.page2)
         self.label_9.setObjectName(u"label_9")
@@ -440,6 +443,8 @@ class Ui_MainWindow(object):
 
         self.price_ns_input = QSpinBox(self.page2)
         self.price_ns_input.setObjectName(u"price_ns_input")
+        self.price_ns_input.setMinimum(0)          # Set minimum as needed
+        self.price_ns_input.setMaximum(99999999)   # Increase maximum to allow more digits
         self.price_ns_input.setStyleSheet(u" background-color:rgb(234, 234, 234);\n"
 "color: rgb(0, 0, 0);\n"
 "    text-align: center;\n"
@@ -565,7 +570,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(Form)
 
-        self.stackedWidget.setCurrentIndex(1)
+        # self.stackedWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(Form)
@@ -610,12 +615,15 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem5.setText(QCoreApplication.translate("Form", u"Price", None));
 
         ___qtablewidgetitem6 = self.search_result_table.horizontalHeaderItem(5)
+        ___qtablewidgetitem5.setText(QCoreApplication.translate("Form", u"Product", None));
+
+        ___qtablewidgetitem7 = self.search_result_table.horizontalHeaderItem(6)
         ___qtablewidgetitem6.setText(QCoreApplication.translate("Form", u"Actions", None));
 
-        self.comboBox.setPlaceholderText(QCoreApplication.translate("Form", u"Choose Product", None))
+        self.product_combo_list.setPlaceholderText(QCoreApplication.translate("Form", u"Choose Product", None))
         self.label_9.setText(QCoreApplication.translate("Form", u"Price", None))
         self.label_7.setText(QCoreApplication.translate("Form", u"Serial Number", None))
-        self.mobile_ns_input.setPlaceholderText(QCoreApplication.translate("Form", u"Enter Buyer Mobile Number ......", None))
+        self.mobile_ns_input.setPlaceholderText(QCoreApplication.translate("Form", u"Enter 10 digit Mobile Number ......", None))
         self.price_ns_input.setSuffix("")
         self.price_ns_input.setPrefix(QCoreApplication.translate("Form", u"Rs. ", None))
         self.label_4.setText(QCoreApplication.translate("Form", u"Mobile", None))

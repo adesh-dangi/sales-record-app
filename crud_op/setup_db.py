@@ -52,14 +52,14 @@ def load_mock_data():
     session.add_all(buyers)
 
     battery_sales = [
-        Battery_Sales(name="John Doe", mobile="1234567890", order_id='T1jygkyjghjku12320', price=100.0, created_at=datetime.now(), updated_at=datetime.now()),
-        Battery_Sales(name="Jane Smith", mobile="0987654321", order_id="T1jygkyjghjku12322", price=150.0, created_at=datetime.now(), updated_at=datetime.now()),
-        Battery_Sales(name="Alice Johnson", mobile="5551234567", order_id="T1jygkyjghjku12321", price=200.0, created_at=datetime.now(), updated_at=datetime.now()),
-        Battery_Sales(name="John Doe", mobile="1234567890", order_id="T1jygkyjghjku1232", price=120.0, created_at=datetime.now(), updated_at=datetime.now()),
-        Battery_Sales(name=f"John {gen_random_str(5)}", mobile=gen_random_mobile_num(), order_id=gen_random_str(lenght=15), price=10000.0, created_at=datetime.now(), updated_at=datetime.now()),
-        Battery_Sales(name=f"Jane {gen_random_str(5)}", mobile=gen_random_mobile_num(), order_id=gen_random_str(lenght=15), price=1500.0, created_at=datetime.now(), updated_at=datetime.now()),
-        Battery_Sales(name=f"Alice {gen_random_str(5)}", mobile=gen_random_mobile_num(), order_id=gen_random_str(lenght=15), price=20000.0, created_at=datetime.now(), updated_at=datetime.now()),
-        Battery_Sales(name=f"John {gen_random_str(5)}", mobile=gen_random_mobile_num(), order_id=gen_random_str(lenght=15), price=120000.0, created_at=datetime.now(), updated_at=datetime.now()),
+        Battery_Sales(name="John Doe", mobile="1234567890", order_id='T1jygkyjghjku12320', price=100.0, created_at=datetime.now(), updated_at=datetime.now(),product="battery"),
+        Battery_Sales(name="Jane Smith", mobile="0987654321", order_id="T1jygkyjghjku12322", price=150.0, created_at=datetime.now(), updated_at=datetime.now(),product="battery"),
+        Battery_Sales(name="Alice Johnson", mobile="5551234567", order_id="T1jygkyjghjku12321", price=200.0, created_at=datetime.now(), updated_at=datetime.now(),product="battery"),
+        Battery_Sales(name="John Doe", mobile="1234567890", order_id="T1jygkyjghjku1232", price=120.0, created_at=datetime.now(), updated_at=datetime.now(),product="battery"),
+        Battery_Sales(name=f"John {gen_random_str(5)}", mobile=gen_random_mobile_num(), order_id=gen_random_str(lenght=15), price=10000.0, created_at=datetime.now(), updated_at=datetime.now(),product="battery"),
+        Battery_Sales(name=f"Jane {gen_random_str(5)}", mobile=gen_random_mobile_num(), order_id=gen_random_str(lenght=15), price=1500.0, created_at=datetime.now(), updated_at=datetime.now(),product="battery"),
+        Battery_Sales(name=f"Alice {gen_random_str(5)}", mobile=gen_random_mobile_num(), order_id=gen_random_str(lenght=15), price=20000.0, created_at=datetime.now(), updated_at=datetime.now(),product="battery"),
+        Battery_Sales(name=f"John {gen_random_str(5)}", mobile=gen_random_mobile_num(), order_id=gen_random_str(lenght=15), price=120000.0, created_at=datetime.now(), updated_at=datetime.now(),product="battery"),
     ]
     session.add_all(battery_sales)
 
@@ -75,6 +75,6 @@ if test_env=="py_test_active":
     load_mock_data()
 
 
-# for i in range(50):
+# for i in range(5):
 #     load_mock_data()
 
