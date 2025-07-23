@@ -364,9 +364,10 @@ class Ui_MainWindow(object):
         __qtablewidgetitem7 = QTableWidgetItem()
         self.search_result_table.setHorizontalHeaderItem(6, __qtablewidgetitem7)
 
+        self.search_result_table.horizontalHeader().setSectionResizeMode(6, QHeaderView.ResizeMode.ResizeToContents) 
         self.search_result_table.horizontalHeader().setSectionResizeMode(5, QHeaderView.ResizeMode.ResizeToContents) 
         self.search_result_table.horizontalHeader().setSectionResizeMode(2, QHeaderView.ResizeMode.ResizeToContents) 
-        self.search_result_table.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.ResizeToContents) 
+        self.search_result_table.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.ResizeToContents)
 
         self.search_result_table.setObjectName(u"search_result_table")
         self.search_result_table.viewport().setProperty("cursor", QCursor(Qt.CursorShape.PointingHandCursor))
@@ -612,13 +613,13 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem4.setText(QCoreApplication.translate("Form", u"Date", None));
 
         ___qtablewidgetitem5 = self.search_result_table.horizontalHeaderItem(4)
-        ___qtablewidgetitem5.setText(QCoreApplication.translate("Form", u"Price", None));
-
-        ___qtablewidgetitem6 = self.search_result_table.horizontalHeaderItem(5)
         ___qtablewidgetitem5.setText(QCoreApplication.translate("Form", u"Product", None));
 
+        ___qtablewidgetitem6 = self.search_result_table.horizontalHeaderItem(5)
+        ___qtablewidgetitem6.setText(QCoreApplication.translate("Form", u"Price", None));
+
         ___qtablewidgetitem7 = self.search_result_table.horizontalHeaderItem(6)
-        ___qtablewidgetitem6.setText(QCoreApplication.translate("Form", u"Actions", None));
+        ___qtablewidgetitem7.setText(QCoreApplication.translate("Form", u"Actions", None));
 
         self.product_combo_list.setPlaceholderText(QCoreApplication.translate("Form", u"Choose Product", None))
         self.label_9.setText(QCoreApplication.translate("Form", u"Price", None))

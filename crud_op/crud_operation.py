@@ -28,6 +28,28 @@ def add_battery_sale(name, mobile, order_id, price, product):
     session.commit()
     # logger.info(f"Added battery sale: {name}, Order ID: {order_id}, Price: {price}")
 
+def edit_batter_sale(db_id, name, mobile, order_id, price, product):
+    sale = session.query(Battery_Sales).filter(Battery_Sales.id == db_id).first()
+    logger.info(f"old sale data {sale} to be updated")
+    if sale:
+        # Step 2: Update fields
+        sale.name = name
+        sale.mobile = mobile
+        sale.order_id = order_id
+        sale.price = price
+        sale.product = product
+        sale.updated_at = datetime.now()
+        sale.active_sale = True
+
+        # Step 3: Commit changes
+        session.commit()
+        logger.info(f"Sale updated successfully. {sale}")
+        return True
+    else:
+        logger.info("Sale with ID", db_id, "not found.")
+        return False
+    
+
 def get_all_buyers():
     buyers = session.query(Buyers).all()
     return buyers
@@ -51,9 +73,17 @@ def get_bs_by_filter_keys(name="", mobile="", order_id="", date_search_month="",
     if name:
         search_query.append(Battery_Sales.name.ilike(f"%{name}%"))
     if mobile:
-        search_query.append(Battery_Sales.mobile == mobile)
+        if "," in mobile:
+            ids = [oid.strip() for oid in mobile.split(",") if oid.strip()]
+            search_query.append(Battery_Sales.mobile.in_(ids))
+        else:
+            search_query.append(Battery_Sales.mobile == mobile)
     if order_id:
-        search_query.append(Battery_Sales.order_id == order_id)
+        if "," in order_id:
+            ids = [oid.strip() for oid in order_id.split(",") if oid.strip()]
+            search_query.append(Battery_Sales.order_id.in_(ids))
+        else:
+            search_query.append(Battery_Sales.order_id == order_id)
     if date_search_month and date_search_year:
         # Convert month name to month number
         month_number = datetime.strptime(date_search_month, "%B").month
@@ -105,5 +135,7 @@ def soft_delete_sales_record(record_id):
         session.query(Battery_Sales).filter(Battery_Sales.id == record_id).update({"active_sale": False, "updated_at": datetime.now()})
         session.commit()
         logger.info(f"Deleted sale record with ID: {record_id}")
+        return True
     else:
         logger.info(f"No sale record found with ID: {record_id}")
+        return False
