@@ -12,8 +12,13 @@ def check_dir_presence():
         logger.info("Logs directory created")
 
 if __name__ == "__main__":
-    logger.info("Starting the application...from main.py")
-    check_dir_presence()
-    run_app()
-    logger.info("App closed1")
-    print("App closed2")
+    from traceback import format_exc
+    try:
+        logger.info("Starting the application...from main.py")
+        check_dir_presence()
+        run_app()
+        logger.info("App closed1")
+        print("App closed2")
+    except:
+        print("error in applicant: ", format_exc())
+        logger.error(format_exc())

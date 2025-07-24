@@ -163,6 +163,7 @@ class Start_App(QWidget):
             self.ui.snumber_ns_input.setText(data.mobile or "----")
             self.ui.price_ns_input.setValue(int(data.price) or 0)
             self.ui.stackedWidget.setCurrentIndex(1)
+            self.ui.date_pick_new_sale.setDate(data.created_at)
             if only_view:
                 self.disable_view_save_button()
             
