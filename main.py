@@ -20,5 +20,5 @@ if __name__ == "__main__":
         logger.info("App closed1")
         print("App closed2")
     except:
-        print("error in applicant: ", format_exc())
+        print("error in main: ", format_exc())
         logger.error(format_exc())

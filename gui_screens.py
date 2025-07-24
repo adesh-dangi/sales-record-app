@@ -12,7 +12,16 @@ from PyQt6.QtWidgets import (QAbstractSpinBox, QApplication, QComboBox, QDateEdi
     QLabel, QLineEdit, QPushButton, QSizePolicy,
     QSpacerItem, QSpinBox, QStackedWidget, QTableWidget,
     QTableWidgetItem, QVBoxLayout, QWidget, QMainWindow, QMessageBox)
+import os, sys
+def resource_path(relative_path):
+    """Get absolute path to resource, works for dev and PyInstaller .exe"""
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except AttributeError:
+        base_path = os.path.abspath(".")
 
+    return os.path.join(base_path, relative_path)
 class Ui_MainWindow(object):
     def copy_cell_content(self, row, column):
         print("cell double-clicked to copy", row, column)
@@ -54,7 +63,7 @@ class Ui_MainWindow(object):
 "border-radius: 15px;\n"
 "   padding: 10% 0 10% 0;")
         icon = QIcon()
-        icon.addFile(u"gui/images/icons/search/icons8-search-property-50.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon.addFile(resource_path(u"gui/images/icons/search/icons8-search-property-50.png"), QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.Search_sale_btn.setIcon(icon)
         self.Search_sale_btn.setIconSize(QSize(45, 39))
 
@@ -71,7 +80,7 @@ class Ui_MainWindow(object):
 "border-radius: 15px;\n"
 "   padding: 10% 0 10% 0;")
         icon1 = QIcon()
-        icon1.addFile(u"gui/images/icons/add/icons8-writer-male-50.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon1.addFile(resource_path(u"gui/images/icons/add/icons8-writer-male-50.png"), QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.New_Sales_btn.setIcon(icon1)
         self.New_Sales_btn.setIconSize(QSize(45, 45))
 
@@ -89,7 +98,7 @@ class Ui_MainWindow(object):
 "border-radius: 15px;\n"
 "   padding: 10% 0 10% 0;")
         icon2 = QIcon()
-        icon2.addFile(u"gui\images\pdf_logo.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon2.addFile(resource_path(u"gui\images\pdf_logo.png"), QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.Report_btn.setIcon(icon2)
         self.Report_btn.setIconSize(QSize(45, 50))
 
@@ -193,7 +202,7 @@ class Ui_MainWindow(object):
 "  margin-left: 50%;\n"
 "")
         icon3 = QIcon()
-        icon3.addFile(u"gui/images/icons/search/icons8-search-50.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon3.addFile(resource_path(u"gui/images/icons/search/icons8-search-50.png"), QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.search_btn_action.setIcon(icon3)
         self.search_btn_action.setIconSize(QSize(54, 35))
 
@@ -605,7 +614,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Record Managment", None))
-        Form.setWindowIcon(QIcon("gui/images/icons/search/icons8-search-property-100.png"))
+        Form.setWindowIcon(QIcon(resource_path("gui/images/icons/search/icons8-search-property-100.png")))
         self.Search_sale_btn.setText(QCoreApplication.translate("Form", u"Search Sales", None))
         self.New_Sales_btn.setText(QCoreApplication.translate("Form", u"New Sales", None))
         self.Report_btn.setText(QCoreApplication.translate("Form", u"Report", None))

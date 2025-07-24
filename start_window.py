@@ -437,10 +437,14 @@ class Start_App(QWidget):
 
 
 def run_app():
-    app = QApplication(sys.argv)
-    window = Start_App()
-    window.show()
-    sys.exit(app.exec())
+    from traceback import format_exc
+    try:
+        app = QApplication(sys.argv)
+        window = Start_App()
+        window.show()
+        sys.exit(app.exec())
+    except:
+        print("start window error: ", format_exc())
 
 if __name__ == "__main__":
     run_app()
