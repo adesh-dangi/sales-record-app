@@ -444,7 +444,7 @@ def run_app():
         window.show()
         sys.exit(app.exec())
     except:
-        print("start window error: ", format_exc())
+        logger.error("start window error: ", format_exc())
 
 if __name__ == "__main__":
     run_app()

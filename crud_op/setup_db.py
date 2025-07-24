@@ -4,10 +4,11 @@ from sqlalchemy import create_engine
 from crud_op.data_schemas import Base, Buyers, Battery_Sales
 from logs import c_logger as logger
 from datetime import datetime
+from utils import resource_path
 
 logger.info("Starting to initialize database......")
 
-DB_NAME = 'record_sales.db'
+DB_NAME = resource_path('record_sales.db')
 
 test_env = os.getenv("TEST_ENV")
 # export TEST_ENV=py_test_active

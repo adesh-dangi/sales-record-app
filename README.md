@@ -32,6 +32,10 @@ If you use external packages, PyInstaller will include them automatically.
 Example command for your project:
 pyinstaller --onefile --windowed --name "Sales_Record_App" --add-data "gui/images;gui/images" main.py
 
+debug exe
+pyinstaller --onefile --name "Sales_Record_App_Debug" --add-data "gui/images;gui/images" main.py
+
+
 This will package your app and required assets into a single executable.
 
 resources:
