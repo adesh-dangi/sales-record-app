@@ -578,7 +578,7 @@ class Ui_MainWindow(object):
     # setupUi
 
     def retranslateUi(self, Form):
-        Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
+        Form.setWindowTitle(QCoreApplication.translate("Form", u"Record Managment", None))
         self.Search_sale_btn.setText(QCoreApplication.translate("Form", u"Search Sales", None))
         self.New_Sales_btn.setText(QCoreApplication.translate("Form", u"New Sales", None))
         self.Report_btn.setText(QCoreApplication.translate("Form", u"Report", None))
