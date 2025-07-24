@@ -7,10 +7,18 @@ from crud_op.data_schemas import Buyers, Battery_Sales, Product
 from logs import c_logger as logger
 
 def save_new_product_item(product_name):
-    new_product= Product(name=product_name)
+    if "devtest" in product_name:
+        return # to let product be tested only not to save if its only for test
+    
+    existing_product = session.query(Product).filter(Product.name==product_name).first()
+    if existing_product:
+        logger.info(f"Product already exists: {existing_product.name}")
+        return  # or return existing_product if needed
+
+    new_product = Product(name=product_name)
     session.add(new_product)
     session.commit()
-    # logger.info(f"Added product: {new_product}")
+    logger.info(f"Added product: {new_product}")
 
 def get_products_list():
     buyers = session.query(Product).filter(Product.active==True).all()
@@ -22,13 +30,15 @@ def add_buyer(name, mobile):
     session.commit()
     # logger.info(f"Added buyer: {name}")
 
-def add_battery_sale(name, mobile, order_id, price, product):
-    new_sale = Battery_Sales(name=name, mobile=mobile, order_id=order_id, price=price, product=product,created_at=datetime.now(), updated_at=datetime.now())
+def add_battery_sale(name, mobile, order_id, price, product, order_date=""):
+    if order_date:
+        order_date = datetime.strptime(order_date,"%d-%m-%Y")
+    new_sale = Battery_Sales(name=name, mobile=mobile, order_id=order_id, price=price, product=product,created_at=order_date or datetime.now(), updated_at=datetime.now())
     session.add(new_sale)
     session.commit()
     # logger.info(f"Added battery sale: {name}, Order ID: {order_id}, Price: {price}")
 
-def edit_batter_sale(db_id, name, mobile, order_id, price, product):
+def edit_batter_sale(db_id, name, mobile, order_id, price, product,order_date=""):
     sale = session.query(Battery_Sales).filter(Battery_Sales.id == db_id).first()
     logger.info(f"old sale data {sale} to be updated")
     if sale:
@@ -40,13 +50,15 @@ def edit_batter_sale(db_id, name, mobile, order_id, price, product):
         sale.product = product
         sale.updated_at = datetime.now()
         sale.active_sale = True
+        if order_date:
+            sale.created_at = datetime.strptime(order_date,"%d-%m-%Y")
 
         # Step 3: Commit changes
         session.commit()
-        logger.info(f"Sale updated successfully. {sale}")
+        logger.info(f"Sale updated successfully. {db_id}")
         return True
     else:
-        logger.info("Sale with ID", db_id, "not found.")
+        logger.info(f"Sale with ID { db_id} not found.")
         return False
     
 

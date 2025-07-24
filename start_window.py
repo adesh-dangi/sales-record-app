@@ -31,6 +31,7 @@ class Start_App(QWidget):
         self.referesh_flag_on_nav_search_btn = True
         self.previous_highlighted_row = None
         self.buttons_clicked_connect()
+        self.load_products_list()
 
 
     def handle_input_product_list_edit(self):
@@ -166,7 +167,6 @@ class Start_App(QWidget):
                 self.disable_view_save_button()
             
 
-
     def edit_row_from_search_table(self, row, db_id):
         self.save_new_sale_error=False
         logger.info(f"Edit button clicked for row: {row, db_id}")
@@ -178,7 +178,7 @@ class Start_App(QWidget):
 
 
     def edit_sales_record(self, db_id):
-        name, mobile, product, serial_num, price = self.process_form_sale()
+        name, mobile, product, serial_num, price,order_date = self.process_form_sale()
         if self.save_new_sale_error!=True and all([name, mobile, product, serial_num]) and price > 0:
             upd_flag = edit_batter_sale(
                 db_id=db_id,
@@ -186,7 +186,8 @@ class Start_App(QWidget):
                 mobile=mobile,
                 price=price,
                 order_id=serial_num,
-                product=product
+                product=product,
+                order_date=order_date
             )
             if upd_flag:
                 logger.info("Record updated successfully!")
@@ -310,11 +311,12 @@ class Start_App(QWidget):
         self.ui.year_search_inp.clear() 
 
     def load_products_list(self):
-        products = get_products_list()
-        if products:
-            for product in products:
-                # print(product.name, type(product.name))
-                self.ui.product_combo_list.addItem(str(product.name))
+        product_list = get_products_list()
+        existing_items = set(self.ui.product_combo_list.itemText(i) for i in range(self.ui.product_combo_list.count()))
+        for product in product_list:
+            name = str(product.name)
+            if name not in existing_items:
+                self.ui.product_combo_list.addItem(name)
 
     def show_new_sales_page(self):
         self.referesh_flag_on_nav_search_btn=True
@@ -329,7 +331,6 @@ class Start_App(QWidget):
 "   padding: 10% 50% 10% 50%;")
         self.ui.stackedWidget.setCurrentIndex(1)  # Page 2 index
         logger.info("Switched to New Sales Page")
-        self.load_products_list()
         self.ui.product_combo_list.setEditable(True)
         self.ui.save_new_sale_record_btn.disconnect()
         self.clear_new_sale_form()
@@ -342,6 +343,8 @@ class Start_App(QWidget):
         self.ui.save_new_sale_record_btn.setText("Save")
         self.ui.clear_new_sale_record_btn.clicked.connect(self.clear_new_sale_form)
         self.ui.save_new_sale_record_btn.clicked.connect(self.save_new_sales_record)
+        self.ui.date_pick_new_sale.setDate(QDate.currentDate())
+
     
     def process_form_sale(self):
         # Get values from inputs
@@ -350,6 +353,8 @@ class Start_App(QWidget):
         product = self.ui.product_combo_list.currentText().strip()
         serial_num = self.ui.snumber_ns_input.text().strip()
         price = self.ui.price_ns_input.value()  # assuming QSpinBox or QDoubleSpinBox
+        order_date = self.ui.date_pick_new_sale.text()
+        print("date selected",order_date)
 
         self.tmp_flag = False
         # Validation and red border logic
@@ -383,10 +388,10 @@ class Start_App(QWidget):
         mark_invalid(self.ui.price_ns_input, price > 0)
         if self.tmp_flag==False:
             self.save_new_sale_error=False
-        return name, mobile, product, serial_num, price
+        return name, mobile, product, serial_num, price, order_date
     
     def save_new_sales_record(self):
-        name, mobile, product, serial_num, price = self.process_form_sale()
+        name, mobile, product, serial_num, price, order_date = self.process_form_sale()
 
         if self.save_new_sale_error!=True and all([name, mobile, product, serial_num]) and price > 0:
             add_battery_sale(
@@ -394,7 +399,8 @@ class Start_App(QWidget):
                 mobile=mobile,
                 price=price,
                 order_id=serial_num,
-                product=product
+                product=product,
+                order_date=order_date
             )
             logger.info("Record saved successfully!")
             self.save_new_sale_error = False
@@ -410,6 +416,7 @@ class Start_App(QWidget):
         self.ui.mobile_ns_input.clear()
         self.ui.product_combo_list.setCurrentIndex(0)
         self.ui.snumber_ns_input.clear()
+        self.ui.date_pick_new_sale.setDate(QDate.currentDate())
 
         def reset_border(widget):
             widget.setStyleSheet(u" background-color:rgb(234, 234, 234);\n"

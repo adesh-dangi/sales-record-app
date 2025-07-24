@@ -468,6 +468,32 @@ class Ui_MainWindow(object):
 "   padding: 10% 0 10% 20%;")
 
         self.gridLayout_3.addWidget(self.label_4, 3, 0, 1, 1)
+        
+        self.new_sale_date_label = QLabel(self.page2)
+        self.new_sale_date_label.setObjectName(u"new_sale_date_label")
+        self.new_sale_date_label.setStyleSheet(u" background-color:rgb(170, 170, 255);\n"
+"color: Black;\n"
+"    text-align: center;\n"
+"    font-weight: bold;\n"
+"    font-size: 20px;\n"
+"border-radius: 15px;\n"
+"   padding: 10% 0 10% 20%;")
+
+        self.gridLayout_3.addWidget(self.new_sale_date_label, 7, 0, 1, 1)
+
+        self.date_pick_new_sale = QDateEdit(self.page2)
+        self.date_pick_new_sale.setCalendarPopup(True)
+        self.date_pick_new_sale.setObjectName(u"date_pick_new_sale")
+        self.date_pick_new_sale.setStyleSheet(u" background-color:rgb(234, 234, 234);\n"
+"color: rgb(0, 0, 0);\n"
+"    text-align: center;\n"
+"    font-weight: bold;\n"
+"    font-size: 20px;\n"
+"border-radius: 15px;\n"
+"   padding: 10% 50% 10% 50%;\n"
+"border:2px solid black;")
+
+        self.gridLayout_3.addWidget(self.date_pick_new_sale, 7, 1, 1, 1)
 
         self.clear_new_sale_record_btn = QPushButton(self.page2)
         self.clear_new_sale_record_btn.setObjectName(u"clear_new_sale_record_btn")
@@ -579,6 +605,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Record Managment", None))
+        Form.setWindowIcon(QIcon("gui/images/icons/search/icons8-search-property-100.png"))
         self.Search_sale_btn.setText(QCoreApplication.translate("Form", u"Search Sales", None))
         self.New_Sales_btn.setText(QCoreApplication.translate("Form", u"New Sales", None))
         self.Report_btn.setText(QCoreApplication.translate("Form", u"Report", None))
@@ -634,6 +661,7 @@ class Ui_MainWindow(object):
         self.label_8.setText(QCoreApplication.translate("Form", u"Product", None))
         self.snumber_ns_input.setPlaceholderText(QCoreApplication.translate("Form", u"Enter Order Serial Number for product ......", None))
         self.label.setText(QCoreApplication.translate("Form", u"Name", None))
+        self.new_sale_date_label.setText(QCoreApplication.translate("Form", u"Select Date -", None))
         self.save_new_sale_record_btn.setText(QCoreApplication.translate("Form", u"Save", None))
         self.label_3.setText(QCoreApplication.translate("Form", u"Save New Sales", None))
     # retranslateUi
